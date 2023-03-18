@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../CascadiaCode-2111.01/ttf"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "my 3d name"
+	}
+}

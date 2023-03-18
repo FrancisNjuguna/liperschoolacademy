@@ -1,0 +1,87 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="image/01_header/favicon.ico"
+            type="image/x-icon"
+        />
+        <title>login</title>
+        <!-- fontawsome cdn link -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <!-- css links -->
+        <link rel="stylesheet" href="css/layout.css" />
+        <link rel="stylesheet" href="css/footer.css" />
+        <link rel="stylesheet" href="css/login.css" />
+    </head>
+    <body>
+       
+        <div class="login__container">
+            <div class="login__wrapper">
+                <div class="login__item login__item--left">
+                    <img src="image/07_login/background.jpg" alt="" />
+                </div>
+                <div class="login__item login__item--right">
+                    <div class="login--title">Sign Out </div>
+                    <div class="login--form">
+                       
+                        <h2 id="name" style="color: rgb(8, 226, 215);">HELLO👋:&nbsp;&nbsp;</h2>
+                        <img id="image"/>
+                        
+                        <input type="submit" onclick="logout()" value="Log Out" class="btn_sign" />
+                    </div>
+                  <p style="color: white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIPS</p>
+                   <hr>
+                    <div class="login--createAccount">
+                        <div class="login--createAccount--items">
+                            <p>If you don't want to log out, please refresh this page and you will be redirected back to the main homepage</p>
+                            
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+         // Parse query string to see if page request is coming from OAuth 2.0 server.
+         var params = {};
+         var regex = /([^&=]+)=([^&]*)/g, m;
+         while (m = regex.exec(location.href)) {
+             params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+         }
+         if (Object.keys(params).length > 0) {
+             localStorage.setItem('authInfo', JSON.stringify(params));
+         }
+         window.history.pushState({}, document.title, "/" + "devteachescode/index.html");
+         let info = JSON.parse(localStorage.getItem('authInfo'))
+         console.log(info['access_token'])
+         console.log(info['expires_in'])
+        fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+            headers: {
+                "Authorization": `Bearer ${info['access_token']}`
+            }
+        })
+            .then(data => data.json())
+            .then((info) => {
+                console.log(info)
+                document.getElementById('name').innerHTML += info.name
+                document.getElementById('image').setAttribute('src',info.picture)
+            })
+
+            function logout() {
+                fetch("https://oauth2.googleapis.com/revoke?token=" + info['access_token'],
+                    {
+                        method: 'POST',
+                        headers: {
+                            "Content-type": "application/x-www-form-urlencoded"
+                        }
+                    })
+                    .then((data) => {
+                        location.href = "https://liperdevacademy.vercel.app/"
+                    })
+            }
+    </script>
+</html>
