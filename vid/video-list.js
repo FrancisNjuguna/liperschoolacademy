@@ -19,11 +19,5 @@ let allVideos = [
       name: "Programming Languages 1965 - 2022",
       src: "NEW! Most Popular Programming Languages 1965 - 2022",
       id: "vid_6"
-   },
-   
-   {
-      name: "CONCLUSSION LETS TALQ",
-      src: "letsw rock the test",
-      id: "vid_13"
    }
 ]
