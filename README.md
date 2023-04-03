@@ -28,3 +28,6 @@ The interface of the platform has been designed with ease of use in mind. All fe
  ## Conclusion 
 
  This personal learning platform is a great way for users to learn about blockchain technology in an easy and secure way. With its responsive design, Google Auth integration, and easy-to-use interface, it provides a great user experience while still allowing users to interact with the Ethereum blockchain securely and easily.
+ 
+ 
+ CONTACT ME TO ACCESS THE PLATFORM SINCE THE GOOGLE AUTH IS IN TEST MODE,
